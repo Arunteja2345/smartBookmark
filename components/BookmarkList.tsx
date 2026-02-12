@@ -56,9 +56,13 @@ export default function BookmarkList({ lastUpdated }: BookmarkListProps) {
         }
     }
 
+    // Initial fetch and manual refresh
     useEffect(() => {
         fetchBookmarks()
+    }, [lastUpdated])
 
+    // Realtime subscription setup (runs once)
+    useEffect(() => {
         // Set up real-time subscription
         console.log('Setting up Realtime subscription...')
         const channel = supabase
@@ -82,7 +86,7 @@ export default function BookmarkList({ lastUpdated }: BookmarkListProps) {
         return () => {
             supabase.removeChannel(channel)
         }
-    }, [lastUpdated])
+    }, [supabase])
 
     if (loading) {
         return (
