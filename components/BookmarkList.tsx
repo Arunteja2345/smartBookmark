@@ -60,6 +60,7 @@ export default function BookmarkList({ lastUpdated }: BookmarkListProps) {
         fetchBookmarks()
 
         // Set up real-time subscription
+        console.log('Setting up Realtime subscription...')
         const channel = supabase
             .channel('realtime bookmarks')
             .on(

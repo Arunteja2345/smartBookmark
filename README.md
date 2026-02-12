@@ -132,7 +132,10 @@ After deploying, you need to update your OAuth redirect URLs:
 
 **Issue**: Bookmarks weren't updating in real-time across tabs initially.
 
-**Solution**: Added `alter publication supabase_realtime add table bookmarks;` to the SQL schema and properly set up Supabase Realtime channels in the `BookmarkList` component with cleanup on unmount.
+**Solution**: 
+1. Added `alter publication supabase_realtime add table bookmarks;` to the SQL schema.
+2. Implemented a **manual refresh fallback**: When a bookmark is added in the current tab, the list refreshes immediately even if Realtime is disconnected.
+3. Added robust connection handling and status logging for debugging.
 
 ### Problem 4: OAuth Redirect Loop
 
