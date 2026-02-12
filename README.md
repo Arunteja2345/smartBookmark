@@ -193,7 +193,7 @@ MIT License - feel free to use this project for your own purposes.
 - Built with [Next.js](https://nextjs.org/)
 - Backend powered by [Supabase](https://supabase.com/)
 - Styled with [Tailwind CSS](https://tailwindcss.com/)
-- Deployed on [Vercel](https://vercel.com/)
+- Deployed on [Vercel](https://smart-bookmark-gules.vercel.app/)
 
 ---
 
