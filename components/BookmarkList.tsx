@@ -61,7 +61,7 @@ export default function BookmarkList({ lastUpdated }: BookmarkListProps) {
 
         // Set up real-time subscription
         const channel = supabase
-            .channel('bookmarks-changes')
+            .channel('realtime bookmarks')
             .on(
                 'postgres_changes',
                 {
@@ -69,11 +69,14 @@ export default function BookmarkList({ lastUpdated }: BookmarkListProps) {
                     schema: 'public',
                     table: 'bookmarks',
                 },
-                () => {
+                (payload) => {
+                    console.log('Change received!', payload)
                     fetchBookmarks()
                 }
             )
-            .subscribe()
+            .subscribe((status) => {
+                console.log('Realtime subscription status:', status)
+            })
 
         return () => {
             supabase.removeChannel(channel)
