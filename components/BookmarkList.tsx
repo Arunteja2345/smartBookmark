@@ -13,7 +13,7 @@ export default function BookmarkList({ lastUpdated }: BookmarkListProps) {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState('')
 
-    const supabase = createClient()
+    const [supabase] = useState(() => createClient())
 
     const fetchBookmarks = async () => {
         try {
