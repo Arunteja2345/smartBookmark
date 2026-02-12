@@ -1,10 +1,17 @@
 'use client'
 
+import { useState } from 'react'
 import BookmarkList from '@/components/BookmarkList'
 import AddBookmarkForm from '@/components/AddBookmarkForm'
 import AuthButton from '@/components/AuthButton'
 
 export default function HomePage() {
+    const [lastUpdated, setLastUpdated] = useState(Date.now())
+
+    const handleBookmarkAdded = () => {
+        setLastUpdated(Date.now())
+    }
+
     return (
         <div className="min-h-screen p-4 md:p-8">
             <div className="max-w-4xl mx-auto">
@@ -20,10 +27,10 @@ export default function HomePage() {
                 </div>
 
                 {/* Add Bookmark Form */}
-                <AddBookmarkForm onBookmarkAdded={() => { }} />
+                <AddBookmarkForm onBookmarkAdded={handleBookmarkAdded} />
 
                 {/* Bookmarks List */}
-                <BookmarkList />
+                <BookmarkList lastUpdated={lastUpdated} />
             </div>
         </div>
     )

@@ -4,7 +4,11 @@ import { useEffect, useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import type { Bookmark } from '@/lib/types'
 
-export default function BookmarkList() {
+interface BookmarkListProps {
+    lastUpdated?: number
+}
+
+export default function BookmarkList({ lastUpdated }: BookmarkListProps) {
     const [bookmarks, setBookmarks] = useState<Bookmark[]>([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState('')
@@ -74,7 +78,7 @@ export default function BookmarkList() {
         return () => {
             supabase.removeChannel(channel)
         }
-    }, [])
+    }, [lastUpdated])
 
     if (loading) {
         return (
